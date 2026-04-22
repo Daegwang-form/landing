@@ -555,6 +555,25 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* 마감 처리 스타일 (커스텀 추가) */
+    .sold-out {
+      background-color: #f8f9fa !important;
+      opacity: 0.6;
+      position: relative;
+      overflow: hidden;
+    }
+    .sold-out-badge {
+      display: inline-block;
+      background: #888;
+      color: #fff;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 8px;
+      vertical-align: middle;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -668,13 +687,14 @@
           <div class="program-dept">뷰티아트과 · 본관 1층 헤어디자인실</div>
         </div>
         <div class="program-card-body">
-          <div class="program-item" style="opacity: 0.6;">
-            <div class="program-item-date">📅 5월 16일 (토)</div>
-            <div class="program-item-title">
-              <del style="color: #999;">내 취향 100% 나만의 네일 팁 만들기</del>
-              <span style="color: #d63031; font-size: 12px; margin-left: 6px; font-weight: 700;">[접수 마감]</span>
+          
+          <div class="program-item sold-out">
+            <div class="program-item-date" style="color:#888;">📅 5월 16일 (토)</div>
+            <div class="program-item-title" style="color:#888;">
+              <del>내 취향 100% 나만의 네일 팁 만들기</del>
+              <span class="sold-out-badge">접수마감</span>
             </div>
-            <div class="program-item-deadline" style="color: #d63031; font-weight: 600;">※ 선착순 모집이 마감되었습니다.</div>
+            <div class="program-item-deadline" style="color:#d63031; font-weight: bold;">[선착순 모집이 완료되었습니다]</div>
           </div>
           
           <div class="program-item">
