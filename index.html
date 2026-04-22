@@ -31,20 +31,31 @@
       overflow-x: hidden;
     }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      background: var(--green);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 60px 24px 80px;
-      overflow: hidden;
-    }
+/* --- CSS 수정 (.hero 부분 교체) --- */
 
-    /* Decorative circles */
+.hero {
+  min-height: 100vh;
+  /* 깊이감 있는 다크 그린에서 생동감 있는 그린으로 이어지는 그라데이션 */
+  background: linear-gradient(135deg, #10301c 0%, #1a4d2e 50%, #2d7a4f 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px 80px;
+  overflow: hidden;
+}
+
+/* 배경에 은은한 광택 효과를 더하고 싶다면 이 코드를 추가하세요 (선택 사항) */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(58, 171, 104, 0.15) 0%, transparent 80%);
+  pointer-events: none;
+}
+
+        /* Decorative circles */
     .hero::before {
       content: '';
       position: absolute;
