@@ -11,421 +11,168 @@
     :root {
       --orange: #FF6B2B;
       --orange-light: #FF8F5E;
-      --orange-pale: #FFF3ED;
       --green: #1a4d2e;
+      --green-dark: #10301c;
       --green-mid: #2d7a4f;
       --green-bright: #3aab68;
       --yellow: #FFD84D;
+      --yellow-bright: #FFB800; /* 더 진한 노란색 */
       --cream: #FDFAF5;
-      --dark: #1a1a1a;
       --text: #2d2d2d;
-      --text-mid: #666;
+      --grad-beauty: linear-gradient(135deg, #FF6B9D 0%, #FF8F5E 100%);
+      --grad-design: linear-gradient(135deg, #667EEA 0%, #3aab68 100%);
+      /* 버튼용 화사한 그라데이션 */
+      --grad-btn: linear-gradient(135deg, #FFD84D 0%, #FFB800 100%);
     }
 
     html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans KR', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
 
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-/* --- CSS 수정 (.hero 부분 교체) --- */
-
-.hero {
-  min-height: 100vh;
-  /* 깊이감 있는 다크 그린에서 생동감 있는 그린으로 이어지는 그라데이션 */
-  background: linear-gradient(135deg, #10301c 0%, #1a4d2e 50%, #2d7a4f 100%);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 24px 80px;
-  overflow: hidden;
-}
-
-/* 배경에 은은한 광택 효과를 더하고 싶다면 이 코드를 추가하세요 (선택 사항) */
-.hero::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(58, 171, 104, 0.15) 0%, transparent 80%);
-  pointer-events: none;
-}
-
-        /* Decorative circles */
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -150px; right: -150px;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(58,171,104,0.25) 0%, transparent 70%);
-      pointer-events: none;
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 50%, var(--green-mid) 100%);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px 80px;
+      overflow: hidden;
     }
     .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -100px; left: -100px;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(255,107,43,0.15) 0%, transparent 70%);
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(58, 171, 104, 0.15) 0%, transparent 80%);
       pointer-events: none;
     }
 
-    /* Floating shapes */
-    .shape {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.15;
-      animation: float 6s ease-in-out infinite;
-    }
-    .shape-1 { width: 80px; height: 80px; background: var(--yellow); top: 15%; left: 8%; animation-delay: 0s; }
-    .shape-2 { width: 50px; height: 50px; background: var(--orange); top: 25%; right: 10%; animation-delay: 1.5s; }
-    .shape-3 { width: 120px; height: 120px; background: var(--green-bright); bottom: 20%; right: 5%; animation-delay: 3s; }
-    .shape-4 { width: 40px; height: 40px; background: var(--yellow); bottom: 30%; left: 12%; animation-delay: 2s; }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(10deg); }
-    }
-
-    /* Stars */
-    .star {
-      position: absolute;
-      color: rgba(255,255,255,0.3);
-      font-size: 20px;
-      animation: twinkle 3s ease-in-out infinite;
-    }
-    .star:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
-    .star:nth-child(2) { top: 35%; right: 18%; animation-delay: 1s; font-size: 14px; }
-    .star:nth-child(3) { bottom: 35%; left: 20%; animation-delay: 2s; font-size: 16px; }
-    .star:nth-child(4) { top: 60%; right: 12%; animation-delay: 0.5s; font-size: 24px; }
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.3; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.3); }
-    }
-
-    /* [옵션 1] HERO BADGE 디자인 적용 */
+    /* HERO BADGE */
     .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+      display: inline-flex; align-items: center; gap: 10px;
       background: rgba(255, 255, 255, 0.15); 
       border: 1px solid transparent;
       background-image: linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05)), 
                         linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.05) 100%);
-      background-origin: border-box;
-      background-clip: padding-box, border-box;
-      border-radius: 100px;
-      padding: 10px 24px;
-      margin-bottom: 28px;
+      background-origin: border-box; background-clip: padding-box, border-box;
+      border-radius: 100px; padding: 10px 24px; margin-bottom: 28px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
-      animation: fadeInDown 0.7s ease both;
-      transition: all 0.3s ease;
-      cursor: default;
+      animation: fadeInDown 0.7s ease both; z-index: 2;
     }
-    .hero-badge:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.25);
-    }
-    .hero-badge-dot {
-      width: 8px; height: 8px;
-      background: var(--green-bright);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(58, 171, 104, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(58, 171, 104, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(58, 171, 104, 0); }
-    }
-    .hero-badge span {
-      font-size: 14px;
-      font-weight: 600;
-      color: #ffffff;
-      letter-spacing: 0.03em;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-    }
-
-    .hero-year {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      color: var(--orange-light);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      animation: fadeInDown 0.7s 0.1s ease both;
-    }
+    .hero-badge-dot { width: 8px; height: 8px; background: var(--green-bright); border-radius: 50%; }
+    .hero-badge span { font-size: 14px; font-weight: 600; color: #ffffff; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
 
     .hero-title {
-      font-family: 'Noto Serif KR', serif;
-      font-size: clamp(48px, 12vw, 88px);
-      font-weight: 900;
-      color: white;
-      line-height: 1.05;
-      text-align: center;
-      letter-spacing: -0.03em;
-      position: relative;
-      z-index: 1;
-      animation: fadeInDown 0.7s 0.2s ease both;
+      font-family: 'Noto Serif KR', serif; font-size: clamp(48px, 12vw, 88px);
+      font-weight: 900; color: white; line-height: 1.05; text-align: center;
+      letter-spacing: -0.03em; animation: fadeInDown 0.7s 0.2s ease both;
     }
-    .hero-title .highlight {
-      color: var(--yellow);
-      display: inline-block;
-      position: relative;
-      /* 밑줄(After 요소) 제거됨 */
-    }
+    .hero-title .highlight { color: var(--yellow); }
 
-    .hero-sub {
-      font-size: clamp(16px, 4vw, 22px);
-      color: rgba(255,255,255,0.7);
-      font-weight: 300;
-      text-align: center;
-      margin-top: 16px;
-      letter-spacing: 0.05em;
-      animation: fadeInDown 0.7s 0.3s ease both;
-    }
-
-    /* Tags */
     .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 32px;
-      animation: fadeInDown 0.7s 0.4s ease both;
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+      margin-top: 32px; animation: fadeInDown 0.7s 0.4s ease both;
     }
     .hero-tag {
-      padding: 8px 18px;
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 500;
+      padding: 8px 18px; border-radius: 100px; font-size: 13px; font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    .tag-orange { background: var(--orange); color: white; }
-    .tag-yellow { background: var(--yellow); color: var(--dark); }
-    .tag-outline { background: transparent; border: 1.5px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); }
+    .tag-beauty { background: var(--grad-beauty); color: white; }
+    .tag-design { background: var(--grad-design); color: white; }
+    .tag-outline { 
+      background: transparent; border: 1.5px solid rgba(255,255,255,0.3); 
+      color: rgba(255,255,255,0.9); font-weight: 400;
+    }
 
-    /* CTA Button */
-    .hero-cta {
-      margin-top: 48px;
-      animation: fadeInDown 0.7s 0.5s ease both;
-    }
+    /* [통일된 화사한 버튼 스타일] */
+    .hero-cta, .cta-btn-wrapper { margin-top: 48px; animation: fadeInDown 0.7s 0.5s ease both; text-align: center; }
     .btn-apply {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: var(--orange);
-      color: white;
-      padding: 18px 40px;
+      background: var(--grad-btn);
+      color: #10301c; /* 짙은 그린색 글자로 가독성 확보 */
+      padding: 20px 48px;
       border-radius: 100px;
-      font-size: 17px;
-      font-weight: 700;
+      font-size: 18px;
+      font-weight: 800;
       text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 30px rgba(255,107,43,0.4);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 30px rgba(255, 216, 77, 0.4);
       position: relative;
-      overflow: hidden;
+      z-index: 1;
     }
     .btn-apply:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(255,107,43,0.5);
-      background: var(--orange-light);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(255, 216, 77, 0.5);
+      background: linear-gradient(135deg, #fff2c2 0%, #FFD84D 100%);
     }
     .btn-arrow {
-      width: 32px; height: 32px;
-      background: rgba(255,255,255,0.2);
+      width: 28px; height: 28px;
+      background: rgba(16, 48, 28, 0.1);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
-      transition: transform 0.3s;
+      font-size: 16px; transition: transform 0.3s;
     }
-
-    .hero-note {
-      margin-top: 16px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.4);
-      text-align: center;
-      animation: fadeInDown 0.7s 0.6s ease both;
-    }
-
-    /* Scroll indicator */
-    .scroll-hint {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      color: rgba(255,255,255,0.3);
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      animation: bounce 2s infinite;
-    }
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(8px); }
-    }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .btn-apply:hover .btn-arrow { transform: translateX(5px); }
 
     /* ── SECTION BASE ── */
     section { padding: 80px 24px; }
     .section-inner { max-width: 720px; margin: 0 auto; }
     .section-label {
-      display: inline-block;
-      background: var(--orange);
-      color: white;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 5px 14px;
-      border-radius: 100px;
-      margin-bottom: 16px;
+      display: inline-block; background: var(--orange); color: white;
+      font-size: 11px; font-weight: 700; padding: 5px 14px;
+      border-radius: 100px; margin-bottom: 16px;
     }
     .section-title {
-      font-family: 'Noto Serif KR', serif;
-      font-size: clamp(26px, 5vw, 38px);
-      font-weight: 700;
-      color: var(--green);
-      line-height: 1.3;
-      margin-bottom: 8px;
+      font-family: 'Noto Serif KR', serif; font-size: clamp(26px, 5vw, 38px);
+      font-weight: 700; color: var(--green); margin-bottom: 40px;
     }
-    .section-desc {
-      font-size: 15px;
-      color: var(--text-mid);
-      line-height: 1.8;
-      margin-bottom: 40px;
-    }
-
-    /* ── INFO CARDS ── */
-    .info-section { background: white; }
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      margin-bottom: 40px;
-    }
-    .info-card {
-      background: var(--cream);
-      border-radius: 20px;
-      padding: 24px;
-      border: 1.5px solid #ede8df;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .info-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-    }
-    .info-icon { font-size: 32px; margin-bottom: 12px; }
-    .info-card-label { font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.1em; margin-bottom: 6px; }
-    .info-card-value { font-size: 15px; font-weight: 600; color: var(--green); line-height: 1.5; }
-
-    /* ── SCHEDULE ── */
-    .schedule-section { background: var(--cream); }
-    .time-table {
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1.5px solid #ede8df;
-      margin-bottom: 40px;
-    }
-    .time-row { display: grid; grid-template-columns: 160px 1fr; border-bottom: 1px solid #f0ebe2; }
-    .time-row:last-child { border-bottom: none; }
-    .time-cell { padding: 16px 20px; font-size: 13px; }
-    .time-cell.time { background: var(--green); color: rgba(255,255,255,0.9); font-weight: 600; font-size: 12px; display: flex; align-items: center; }
-    .time-cell.content { color: var(--text); font-weight: 500; display: flex; align-items: center; }
 
     /* ── PROGRAMS ── */
-    .programs-section { background: white; }
     .program-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-    .program-card { border-radius: 24px; overflow: hidden; border: 1.5px solid #ede8df; transition: transform 0.25s, box-shadow 0.25s; }
+    .program-card { border-radius: 24px; overflow: hidden; border: 1.5px solid #ede8df; transition: transform 0.25s; }
     .program-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-    .program-card-header { padding: 28px 28px 20px; position: relative; }
-    .program-card.beauty .program-card-header { background: linear-gradient(135deg, #FF6B9D 0%, #FF8F5E 100%); }
-    .program-card.design .program-card-header { background: linear-gradient(135deg, #667EEA 0%, #3aab68 100%); }
-    .program-category { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
-    .program-name { font-family: 'Noto Serif KR', serif; font-size: 22px; font-weight: 700; color: white; margin-bottom: 6px; }
-    .program-dept { font-size: 12px; color: rgba(255,255,255,0.65); }
+    .program-card-header { padding: 28px 28px 20px; color: white; }
+    .program-card.beauty .program-card-header { background: var(--grad-beauty); }
+    .program-card.design .program-card-header { background: var(--grad-design); }
+    .program-name { font-family: 'Noto Serif KR', serif; font-size: 22px; font-weight: 700; margin: 5px 0; }
     .program-card-body { padding: 20px 28px 28px; background: white; }
     .program-item { padding: 14px 0; border-bottom: 1px solid #f0ebe2; }
     .program-item:last-child { border-bottom: none; }
-    .program-item-date { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.06em; margin-bottom: 4px; }
-    .program-item-title { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.5; }
-    .program-item-deadline { margin-top: 4px; font-size: 11.5px; color: var(--text-mid); }
-    .program-location { display: inline-flex; align-items: center; gap: 4px; margin-top: 12px; background: var(--cream); border-radius: 8px; padding: 6px 12px; font-size: 12px; color: var(--green); font-weight: 500; }
+    .sold-out { opacity: 0.6; background-color: #f9f9f9; }
+    .sold-out-badge { display: inline-block; background: #888; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 4px; margin-left: 5px; }
 
-    /* 마감 처리 스타일 */
-    .sold-out { opacity: 0.5; background-color: #f9f9f9; }
-    .sold-out-badge { 
-      display: inline-block; background: #666; color: #fff; 
-      font-size: 11px; padding: 2px 8px; border-radius: 4px; 
-      margin-left: 6px; vertical-align: middle; 
+    /* ── BOTTOM CTA (배경 그라데이션) ── */
+    .cta-section { 
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+      text-align: center; padding: 100px 24px; position: relative; overflow: hidden;
     }
-
-    /* ── CONTACT ── */
-    .contact-section { background: var(--cream); }
-    .contact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
-    .contact-card { background: white; border-radius: 16px; padding: 20px; border: 1.5px solid #ede8df; display: flex; align-items: center; gap: 14px; }
-    .contact-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
-    .dot-pink { background: #FF6B9D; }
-    .dot-yellow { background: var(--yellow); }
-    .dot-green { background: var(--green-bright); }
-    .contact-info-label { font-size: 11px; color: var(--text-mid); margin-bottom: 2px; }
-    .contact-info-value { font-size: 14px; font-weight: 700; color: var(--green); }
-
-    /* ── BOTTOM CTA ── */
-    .cta-section { background: var(--green); text-align: center; padding: 80px 24px; position: relative; overflow: hidden; }
-    .cta-title { font-family: 'Noto Serif KR', serif; font-size: clamp(28px, 6vw, 48px); font-weight: 700; color: white; margin-bottom: 12px; position: relative; z-index: 1; }
+    .cta-title { font-family: 'Noto Serif KR', serif; font-size: clamp(28px, 6vw, 48px); font-weight: 700; color: white; margin-bottom: 12px; }
     .cta-title span { color: var(--yellow); }
-    .cta-desc { font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 40px; position: relative; z-index: 1; }
+    .cta-desc { color: rgba(255,255,255,0.7); margin-bottom: 40px; }
 
-    /* ── FOOTER ── */
-    footer { background: #111; padding: 32px 24px; text-align: center; }
-    .footer-logo { font-family: 'Noto Serif KR', serif; font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.8); margin-bottom: 8px; }
-    .footer-sub { font-size: 12px; color: rgba(255,255,255,0.3); }
+    /* FOOTER */
+    footer { background: #111; padding: 32px 24px; text-align: center; color: rgba(255,255,255,0.3); font-size: 12px; }
 
-    /* ── SCROLL REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    /* 애니메이션 */
+    .reveal { opacity: 0; transform: translateY(30px); transition: 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
 
 <section class="hero">
-  <div class="shape shape-1"></div>
-  <div class="shape shape-2"></div>
-  <div class="shape shape-3"></div>
-  <div class="shape shape-4"></div>
-  <span class="star">✦</span>
-  <span class="star">✦</span>
-  <span class="star">✦</span>
-  <span class="star">✦</span>
-
   <div class="hero-badge">
     <div class="hero-badge-dot"></div>
     <span>대광고등학교 · Design Your Dream</span>
   </div>
 
-  <p class="hero-year">2026</p>
-
-  <h1 class="hero-title">
-    중학생<br>
-    <span class="highlight">진로체험</span><br>
-    프로그램
-  </h1>
-
-  <p class="hero-sub">미래를 향한 첫 걸음을 함께합니다</p>
+  <h1 class="hero-title">중학생<br><span class="highlight">진로체험</span><br>프로그램</h1>
 
   <div class="hero-tags">
-    <span class="hero-tag tag-orange">💄 미용계열</span>
-    <span class="hero-tag tag-yellow">🎨 디자인계열</span>
+    <span class="hero-tag tag-beauty">💄 미용계열</span>
+    <span class="hero-tag tag-design">🎨 디자인계열</span>
     <span class="hero-tag tag-outline">중학교 3학년 누구나</span>
     <span class="hero-tag tag-outline">선착순 30명</span>
   </div>
@@ -436,106 +183,45 @@
       <span class="btn-arrow">→</span>
     </a>
   </div>
-  <p class="hero-note">체험일 3일 전까지 신청 가능 · 선착순 마감</p>
-
-  <div class="scroll-hint">
-    <span>SCROLL</span>
-    <span>↓</span>
-  </div>
-</section>
-
-<section class="info-section">
-  <div class="section-inner">
-    <span class="section-label reveal">프로그램 안내</span>
-    <h2 class="section-title reveal">꿈을 직접 경험하는<br>짧은 진로 여행</h2>
-    <div class="info-grid reveal">
-      <div class="info-card">
-        <div class="info-icon">🎯</div>
-        <div class="info-card-label">대상</div>
-        <div class="info-card-value">중학교 3학년 학생 누구나</div>
-      </div>
-      <div class="info-card">
-        <div class="info-icon">📍</div>
-        <div class="info-card-label">장소</div>
-        <div class="info-card-value">대광고등학교 본관</div>
-      </div>
-      <div class="info-card">
-        <div class="info-icon">👥</div>
-        <div class="info-card-label">모집인원</div>
-        <div class="info-card-value">선착순 30명 (계열별 모집)</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="schedule-section">
-  <div class="section-inner">
-    <span class="section-label reveal">운영 일정</span>
-    <h2 class="section-title reveal">하루의 일정</h2>
-    <div class="time-table reveal">
-      <div class="time-row">
-        <div class="time-cell time">10:00 – 10:20</div>
-        <div class="time-cell content">학과 소개 및 체험프로그램 사전 설명</div>
-      </div>
-      <div class="time-row">
-        <div class="time-cell time">10:20 – 11:50</div>
-        <div class="time-cell content">⭐ 체험활동 실시</div>
-      </div>
-      <div class="time-row">
-        <div class="time-cell time">11:50 – 12:00</div>
-        <div class="time-cell content">마무리 정리</div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <section class="programs-section">
   <div class="section-inner">
     <span class="section-label reveal">체험 프로그램</span>
-    <h2 class="section-title reveal">두 가지 계열, 나의 선택은?</h2>
+    <h2 class="section-title reveal">나의 꿈을 찾는 시간</h2>
+    
     <div class="program-cards">
       <div class="program-card beauty reveal">
         <div class="program-card-header">
-          <div class="program-category">Beauty</div>
           <div class="program-name">미용계열</div>
-          <div class="program-dept">뷰티아트과 · 본관 1층</div>
+          <p style="font-size:12px; opacity:0.9;">뷰티아트과 · 본관 1층</p>
         </div>
         <div class="program-card-body">
           <div class="program-item sold-out">
-            <div class="program-item-date">📅 5월 16일 (토)</div>
-            <div class="program-item-title">
-              <del>내 취향 100% 나만의 네일 팁 만들기</del>
-              <span class="sold-out-badge">마감</span>
-            </div>
-            <div class="program-item-deadline" style="color:#d63031;">[접수 마감되었습니다]</div>
+            <div style="font-size: 11px; color: var(--orange); font-weight:700;">📅 5월 16일 (토)</div>
+            <div class="program-item-title"><del>나만의 네일 팁 만들기</del> <span class="sold-out-badge">마감</span></div>
           </div>
           <div class="program-item">
-            <div class="program-item-date">📅 6월 13일 (토)</div>
-            <div class="program-item-title">나만의 색을 찾아보자 (퍼스널컬러 진단)</div>
-            <div class="program-item-deadline">신청기한: 5/25(월) ~ 6/10(수)</div>
+            <div style="font-size: 11px; color: var(--orange); font-weight:700;">📅 6월 13일 (토)</div>
+            <div class="program-item-title">퍼스널컬러 진단 & 립글로스 제작</div>
           </div>
-          <div class="program-location">📞 문의: 070-4924-9194</div>
         </div>
       </div>
 
       <div class="program-card design reveal">
         <div class="program-card-header">
-          <div class="program-category">Design</div>
           <div class="program-name">디자인계열</div>
-          <div class="program-dept">AI디자인과 · 본관 2층</div>
+          <p style="font-size:12px; opacity:0.9;">AI디자인과 · 본관 2층</p>
         </div>
         <div class="program-card-body">
           <div class="program-item">
-            <div class="program-item-date">📅 5월 23일 (토)</div>
-            <div class="program-item-title">AI 굿즈 스튜디오 (아크릴 스탠드 제작)</div>
-            <div class="program-item-deadline">신청기한: 4/20(월) ~ 5/20(수)</div>
+            <div style="font-size: 11px; color: var(--orange); font-weight:700;">📅 5월 23일 (토)</div>
+            <div class="program-item-title">AI 굿즈 (아크릴 스탠드 제작)</div>
           </div>
           <div class="program-item">
-            <div class="program-item-date">📅 6월 20일 (토)</div>
-            <div class="program-item-title">AI 굿즈 스튜디오 (스탬프 도장 제작)</div>
-            <div class="program-item-deadline">신청기한: 5/25(월) ~ 6/17(수)</div>
+            <div style="font-size: 11px; color: var(--orange); font-weight:700;">📅 6월 20일 (토)</div>
+            <div class="program-item-title">AI 굿즈 (스탬프 도장 제작)</div>
           </div>
-          <div class="program-location">📞 문의: 070-4924-9178</div>
         </div>
       </div>
     </div>
@@ -544,29 +230,26 @@
 
 <section class="cta-section">
   <h2 class="cta-title reveal">지금 바로 <span>신청하세요!</span></h2>
-  <p class="cta-desc reveal">선착순 마감 · 체험일 3일 전까지 신청 가능</p>
-  <div class="reveal">
-    <a href="https://daegwang-form.github.io/2026/" class="btn-apply">신청하러 가기 →</a>
+  <p class="cta-desc reveal">선착순 마감으로 조기 종료될 수 있습니다.</p>
+  <div class="cta-btn-wrapper reveal">
+    <a href="https://daegwang-form.github.io/2026/" class="btn-apply">
+      신청하러 가기
+      <span class="btn-arrow">→</span>
+    </a>
   </div>
 </section>
 
 <footer>
-  <div class="footer-logo">대광고등학교</div>
-  <div class="footer-sub">Daegwang High School · Design Your Dream</div>
+  <p>대광고등학교 · Daegwang High School</p>
 </footer>
 
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 </script>
+
 </body>
 </html>
